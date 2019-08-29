@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { getMovies } from "../services/fakeMovieService";
-import Pagination from "./pagination";
-import { paginate } from "../utils/paginate";
-import ListGroup from "./listGroup";
-import { getGenres } from "../services/fakeGenreService";
+import { getMovies } from "services/fakeMovieService";
+import Pagination from "components/pagination";
+import { paginate } from "utils/paginate";
+import ListGroup from "components/listGroup";
+import { getGenres } from "services/fakeGenreService";
 // import { listenerCount } from "cluster";
 
 class Movies extends Component {
