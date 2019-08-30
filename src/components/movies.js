@@ -16,7 +16,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    const genres = [{ name: "All genres" }, ...getGenres()];
+    const genres = [{ _id: "", name: "All genres" }, ...getGenres()];
     this.setState({ genres, movies: getMovies() });
   }
 
