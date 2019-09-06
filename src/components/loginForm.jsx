@@ -1,14 +1,33 @@
 import React, { Component } from "react";
+import Input from "./common/input";
 // import Joi from "joi-browser";
 // import Form from "./common/form";
 
 class LoginForm extends Component {
   state = {
-    account: { username: "ssss", password: "" }
+    account: { username: "xx", password: "" },
+    errors: {}
+  };
+
+  validate = () => {
+    const errors = {};
+    const { account } = this.state;
+
+    if (account.username.trim() === "")
+      errors.username = "username is required!!!";
+
+    if (account.password.trim() === "")
+      errors.password = "password is required!!!";
+
+    return Object.keys(errors).length === 0 ? null : errors;
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
+    const errors = this.validate();
+    this.setState({ errors });
+    if (errors) return;
 
     console.log("Submitted");
   };
@@ -28,30 +47,20 @@ class LoginForm extends Component {
       <div>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">username</label>
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              name="username"
-              autoFocus
-              value={account.username}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              autoFocus
-              value={account.password}
-              onChange={this.handleChange}
-            />
-          </div>
+          <Input
+            name="username"
+            value={account.username}
+            label="Username"
+            onChange={this.handleChange}
+            type="text"
+          />
+          <Input
+            name="password"
+            value={account.password}
+            label="Password"
+            onChange={this.handleChange}
+            type="password"
+          />
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
