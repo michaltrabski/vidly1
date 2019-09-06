@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Input extends Component {
   render() {
-    const { name, label, value, onChange, type } = this.props;
+    const { name, label, error, value, onChange, type } = this.props;
 
     return (
       <div className="form-group">
@@ -14,8 +14,8 @@ class Input extends Component {
           name={name}
           type={type}
           className="form-control"
-          autoFocus
         />
+        {error && <div className="alert alert-danger">{error}</div>}
       </div>
     );
   }
